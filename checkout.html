@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Checkout — VELOR Garments</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Syncopate:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body data-page="checkout">
+    <main class="pg">
+      <header class="ph">
+        <span class="sm">Secure checkout</span>
+        <h1>Checkout</h1>
+      </header>
+      <div class="cw" id="co">
+        <form id="cf" novalidate>
+          <section class="fsec">
+            <h2>Contact</h2>
+            <div class="fg">
+              <label class="f"
+                ><span>Full name</span><input name="name" autocomplete="name"
+              /></label>
+              <label class="f"
+                ><span>Phone number</span
+                ><input name="phone" type="tel" autocomplete="tel"
+              /></label>
+              <label class="f full"
+                ><span>Email (optional)</span
+                ><input name="email" type="email" autocomplete="email"
+              /></label>
+            </div>
+          </section>
+          <section class="fsec">
+            <h2>Delivery address</h2>
+            <div class="fg">
+              <label class="f full"
+                ><span>Street address</span
+                ><input name="address" autocomplete="street-address"
+              /></label>
+              <label class="f"
+                ><span>City</span
+                ><input name="city" autocomplete="address-level2"
+              /></label>
+              <label class="f"
+                ><span>Province</span
+                ><select name="province" id="pv"></select
+              ></label>
+              <label class="f"
+                ><span>Postal code (optional)</span
+                ><input name="zip" autocomplete="postal-code"
+              /></label>
+            </div>
+          </section>
+          <section class="fsec">
+            <h2>Payment</h2>
+            <div class="pm">
+              <label
+                ><input
+                  type="radio"
+                  name="pay"
+                  value="Cash on delivery"
+                  checked
+                />
+                <div>
+                  <b>Cash on delivery</b
+                  ><small>Pay in cash when your order arrives.</small>
+                </div></label
+              >
+              <label
+                ><input type="radio" name="pay" value="Bank transfer" />
+                <div>
+                  <b>Bank transfer</b
+                  ><small>Transfer to our bank account after you order.</small>
+                </div></label
+              >
+              <label
+                ><input type="radio" name="pay" value="Easypaisa" />
+                <div>
+                  <b>Easypaisa</b
+                  ><small
+                    >Send the amount to our Easypaisa account after you
+                    order.</small
+                  >
+                </div></label
+              >
+              <label
+                ><input type="radio" name="pay" value="JazzCash" />
+                <div>
+                  <b>JazzCash</b
+                  ><small
+                    >Send the amount to our JazzCash account after you
+                    order.</small
+                  >
+                </div></label
+              >
+            </div>
+          </section>
+          <section class="fsec">
+            <h2>Order notes</h2>
+            <label class="f full"
+              ><span>Notes (optional)</span
+              ><textarea name="notes" rows="3"></textarea>
+            </label>
+          </section>
+          <p class="err" id="ce" aria-live="polite"></p>
+          <button class="btn full solid" type="submit">
+            <span>Place order</span>
+          </button>
+        </form>
+        <aside class="sum">
+          <h2>Order summary</h2>
+          <div id="oi"></div>
+          <div id="ot"></div>
+          <a class="back nl" href="cart.html">Edit bag</a>
+        </aside>
+      </div>
+      <div class="ok" id="ok" hidden></div>
+      <div class="empty" id="ey" hidden>
+        <h2>Your bag is empty</h2>
+        <p>Add a piece from the collection before checking out.</p>
+        <a class="btn solid" href="index.html#shop"
+          ><span>Continue shopping</span></a
+        >
+      </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
