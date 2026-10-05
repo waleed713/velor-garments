@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Shop — VELOR Garments</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Syncopate:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="header.css" />
+    <link rel="stylesheet" href="shop.css" />
+  </head>
+  <body data-page="shop" data-hero="1">
+    <section class="sh-hero" id="shh">
+      <div class="px sh-bg">
+        <div class="pi">
+          <img
+            data-id="1733470381436-bb5a2a441708"
+            alt="Woman in an embroidered outfit"
+          />
+        </div>
+      </div>
+      <div class="sh-in">
+        <p class="crumb sm"><a href="index.html">Home</a> / Shop</p>
+        <h1>The Shop</h1>
+        <p class="sh-sub">
+          Ladies ready to wear for every occasion. Stitched, finished and ready
+          the day you order.
+        </p>
+      </div>
+    </section>
+
+    <main class="shop-main" id="grid-top">
+      <div class="bar" id="bar">
+        <div class="chips" id="chips" role="group" aria-label="Category"></div>
+        <label class="sort"
+          ><span class="sm">Sort</span>
+          <select id="srt" aria-label="Sort products">
+            <option value="featured">Featured</option>
+            <option value="new">Newest</option>
+            <option value="low">Price: low to high</option>
+            <option value="high">Price: high to low</option>
+          </select></label
+        >
+        <button class="fbtn" id="fbtn">Filters</button>
+      </div>
+
+      <div class="sw">
+        <aside class="fl" id="fl" aria-label="Filters">
+          <div class="fh"><b>Filters</b><button id="fx">Close</button></div>
+          <div>
+            <h2>Search</h2>
+            <input
+              id="sq2"
+              type="search"
+              placeholder="Name, fabric or category"
+              aria-label="Search products"
+            />
+          </div>
+          <div>
+            <h2>Price</h2>
+            <div class="rng">
+              <i class="tr"></i><i class="fill" id="fill"></i>
+              <input
+                type="range"
+                id="rmin"
+                min="0"
+                max="80000"
+                step="500"
+                value="0"
+                aria-label="Minimum price"
+              />
+              <input
+                type="range"
+                id="rmax"
+                min="0"
+                max="80000"
+                step="500"
+                value="80000"
+                aria-label="Maximum price"
+              />
+            </div>
+            <div class="pr">
+              <span id="pv1">Rs. 0</span><span id="pv2">Rs. 80,000</span>
+            </div>
+            <div class="qp" id="qp">
+              <button data-a="0" data-b="80000">Any price</button
+              ><button data-a="0" data-b="8000">Under 8,000</button
+              ><button data-a="8000" data-b="15000">8,000 to 15,000</button
+              ><button data-a="15000" data-b="30000">15,000 to 30,000</button
+              ><button data-a="30000" data-b="80000">30,000 and above</button>
+            </div>
+          </div>
+          <button class="clr" id="clr">Clear all filters</button>
+        </aside>
+
+        <section class="res">
+          <div class="rt"><p id="rc"></p></div>
+          <div class="pills" id="pills"></div>
+          <div class="pgrid" id="pg"></div>
+          <div class="none" id="none" hidden>
+            <h2>No pieces found</h2>
+            <p>Try a different category, search or price range.</p>
+            <button class="btn" id="clr2"><span>Clear filters</span></button>
+          </div>
+        </section>
+      </div>
+    </main>
+    <div class="fov" id="fov"></div>
+
+    <section class="sk">
+      <h2 id="fg">Fabric guide</h2>
+      <article class="kd" style="--c: #14275c">
+        <div class="kt">
+          <h3>Lawn</h3>
+          <p>
+            Light, breathable cotton for warm days. Wash cold, dry in the shade
+            and press on the reverse to keep prints bright.
+          </p>
+        </div>
+        <div class="px">
+          <div class="pi">
+            <img data-id="1733470324488-d0e10d014d80" alt="Lawn suit" />
+          </div>
+        </div>
+      </article>
+      <article class="kd" style="--c: #1d3a8a">
+        <div class="kt">
+          <h3>Silk and crepe</h3>
+          <p>
+            A soft sheen with a clean drape for formal days. Dry clean, or hand
+            wash cold with a gentle detergent.
+          </p>
+        </div>
+        <div class="px">
+          <div class="pi">
+            <img data-id="1704119142483-1269733bcedb" alt="Silk kameez" />
+          </div>
+        </div>
+      </article>
+      <article class="kd" style="--c: #2a4aa8">
+        <div class="kt">
+          <h3>Embroidery and organza</h3>
+          <p>
+            Hand finished details for celebrations. Store folded in muslin and
+            steam gently, never press on the embroidery.
+          </p>
+        </div>
+        <div class="px">
+          <div class="pi">
+            <img
+              data-id="1631549423660-c10874dc335f"
+              alt="Embroidered festive outfit"
+            />
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+    <script src="header.js"></script>
+    <script src="script.js"></script>
+    <script src="products.js"></script>
+    <script src="shop.js"></script>
+  </body>
+</html>

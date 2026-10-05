@@ -12,13 +12,14 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="header.css" />
   </head>
   <body class="lock" data-page="home">
     <div class="pre" id="pre">
       <div class="cur l"></div>
       <div class="cur r"></div>
       <div class="rod"></div>
-      <div class="pc" id="pc">
+      <div class="plc" id="pc">
         <img class="pl" src="logo.png" alt="VELOR Garments" /><b id="cnt"
           >000</b
         >
@@ -97,7 +98,9 @@
                 <span>Fabric</span><span>Premium lawn</span>
               </div>
               <div class="sp sm"><span>Sizes</span><span>XS to XL</span></div>
-              <a class="btn" href="#shop"><span>Shop the collection</span></a>
+              <a class="btn" href="shop.html"
+                ><span>Shop the collection</span></a
+              >
             </div>
           </div>
         </div>
@@ -123,10 +126,10 @@
             From breezy summer lawn to festive formals, every category is cut
             and finished the same careful way.
           </p>
-          <a class="btn" href="#shop"><span>View all</span></a>
+          <a class="btn" href="shop.html"><span>View all</span></a>
         </div>
         <div class="list">
-          <a class="cat" id="lawn" href="#shop"
+          <a class="cat" id="lawn" href="shop.html?cat=lawn"
             ><div class="px cl">
               <div class="pi">
                 <img
@@ -138,7 +141,7 @@
             <h3>Lawn</h3>
             <span>Light, breathable, everyday</span></a
           >
-          <a class="cat" id="formal" href="#shop"
+          <a class="cat" id="formal" href="shop.html?cat=formal"
             ><div class="px cl">
               <div class="pi">
                 <img
@@ -150,7 +153,7 @@
             <h3>Formal</h3>
             <span>Tailored for work and gatherings</span></a
           >
-          <a class="cat" id="festive" href="#shop"
+          <a class="cat" id="festive" href="shop.html?cat=festive"
             ><div class="px cl">
               <div class="pi">
                 <img
@@ -286,7 +289,9 @@
         />
         <div>
           <h2 class="rv">The Eid edit</h2>
-          <a class="btn" href="#shop"><span>Shop the edit</span></a>
+          <a class="btn" href="shop.html?cat=festive"
+            ><span>Shop the edit</span></a
+          >
         </div>
       </section>
     </main>
@@ -294,6 +299,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+    <script src="header.js"></script>
     <script>
       if (!window.gsap) {
         document.body.classList.remove("lock");

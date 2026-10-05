@@ -7,12 +7,12 @@
   var home = document.body.dataset.page === "home",
     H = home ? "" : "index.html";
   var cats = [
-    ["New in", "#shop"],
-    ["Lawn", "#lawn"],
-    ["Formal", "#formal"],
-    ["Festive", "#festive"],
-    ["Bridal", "#festive"],
-    ["Casual", "#lawn"],
+    ["New in", "shop.html?cat=new"],
+    ["Lawn", "shop.html?cat=lawn"],
+    ["Formal", "shop.html?cat=formal"],
+    ["Festive", "shop.html?cat=festive"],
+    ["Bridal", "shop.html?cat=bridal"],
+    ["Casual", "shop.html?cat=casual"],
   ];
   var li = cats
     .map(function (c) {
@@ -21,7 +21,7 @@
     .join("");
   var fl = cats
     .map(function (c) {
-      return '<a href="' + H + c[1] + '">' + c[0] + "</a>";
+      return '<a href="' + c[1] + '">' + c[0] + "</a>";
     })
     .join("");
   var ico = {
@@ -30,11 +30,6 @@
     wa: '<svg viewBox="0 0 24 24"><path d="M20 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.2-4.2A8.5 8.5 0 1 1 20 11.5z"/><path d="M9 8.5c.3 3 2.5 5.2 5.5 5.5l1-1.3-1.8-.9-.8.6c-.9-.4-1.6-1.1-2-2l.6-.8-.9-1.8z"/></svg>',
   };
   var top =
-    '<nav id="nav"><a class="logo" href="' +
-    (home ? "#top" : "index.html") +
-    '" aria-label="VELOR Garments home"><img src="logo.png" alt="VELOR Garments"></a><ul class="cats sm">' +
-    li +
-    '</ul><button class="nl sm" id="bag" aria-label="Open bag">Bag (0)</button></nav>' +
     '<div class="ov" id="ov"></div>' +
     '<aside class="dr" id="dr" aria-label="Shopping bag" aria-hidden="true">' +
     '<div class="dh"><h3>Your bag <span id="dn">(0)</span></h3><button id="dx">Close</button></div>' +
@@ -89,6 +84,7 @@ var $ = function (s) {
     return document.querySelectorAll(s);
   };
 var HOME = document.body.dataset.page === "home";
+var HERO = HOME || document.body.dataset.hero === "1";
 var WA =
   "923001234567"; /* your WhatsApp number: country code first, no plus sign */
 var FREE_SHIP = 15000,
@@ -165,12 +161,12 @@ $$('a[href^="#"]').forEach(function (a) {
 
 /* header gets a solid background after scrolling (always solid on inner pages) */
 var nav = $("#nav");
-if (!HOME) nav.classList.add("s");
+if (!HERO) nav.classList.add("s");
 ScrollTrigger.create({
   start: 60,
   end: "max",
   onUpdate: function (t) {
-    nav.classList.toggle("s", !HOME || t.scroll() > 60);
+    nav.classList.toggle("s", !HERO || t.scroll() > 60);
   },
 });
 
@@ -221,12 +217,14 @@ function cartChanged() {
   });
 }
 function addToCart(p) {
-  var f = cart.find(function (i) {
-    return i.name === p.name;
-  });
-  if (f) f.qty++;
+  var sz = p.size || "M",
+    q = p.qty || 1,
+    f = cart.find(function (i) {
+      return i.name === p.name && i.size === sz;
+    });
+  if (f) f.qty += q;
   else
-    cart.push({ name: p.name, price: p.price, img: p.img, qty: 1, size: "M" });
+    cart.push({ name: p.name, price: p.price, img: p.img, qty: q, size: sz });
   cartChanged();
 }
 function cartAct(a, k) {
@@ -238,10 +236,17 @@ function cartAct(a, k) {
   cartChanged();
 }
 function setSize(k, s) {
-  if (cart[k]) {
-    cart[k].size = s;
-    cartChanged();
+  var l = cart[k];
+  if (!l) return;
+  l.size = s;
+  var j = cart.findIndex(function (i, x) {
+    return x !== k && i.name === l.name && i.size === s;
+  });
+  if (j > -1) {
+    cart[j].qty += l.qty;
+    cart.splice(k, 1);
   }
+  cartChanged();
 }
 function clearCart() {
   cart = [];
@@ -252,7 +257,8 @@ function clearCart() {
 var dOpen = false,
   mOpen = false;
 function drawerRender() {
-  $("#bag").textContent = "Bag (" + count() + ")";
+  $("#bc").textContent = count();
+  $("#bc").classList.toggle("on", count() > 0);
   $("#dn").textContent = "(" + count() + ")";
   $("#st").textContent = fmt(total());
   $("#wab").disabled = !cart.length;
@@ -744,7 +750,7 @@ if (document.body.dataset.page === "cart")
       $("#cw").classList.toggle("is-empty", !cart.length);
       if (!cart.length) {
         $("#cl").innerHTML =
-          '<div class="empty"><h2>Your bag is empty</h2><p>Add a piece from the collection and it will show up here.</p><a class="btn solid" href="index.html#shop"><span>Continue shopping</span></a></div>';
+          '<div class="empty"><h2>Your bag is empty</h2><p>Add a piece from the collection and it will show up here.</p><a class="btn solid" href="shop.html"><span>Continue shopping</span></a></div>';
         $("#sm").innerHTML = "";
         return;
       }
@@ -760,7 +766,7 @@ if (document.body.dataset.page === "cart")
         pct +
         '%"></b></i></div>' +
         cart.map(row).join("") +
-        '<a class="back nl" href="index.html#shop">Continue shopping</a>';
+        '<a class="back nl" href="shop.html">Continue shopping</a>';
       $("#sm").innerHTML =
         '<h2>Order summary</h2><div class="sr"><span>Subtotal</span><span>' +
         fmt(t) +
@@ -956,7 +962,7 @@ if (document.body.dataset.page === "checkout")
         "</span></div></div>" +
         '<a class="btn solid" target="_blank" rel="noopener" href="' +
         waLink(msg) +
-        '"><span>Confirm on WhatsApp</span></a> <a class="btn" href="index.html#shop"><span>Continue shopping</span></a>';
+        '"><span>Confirm on WhatsApp</span></a> <a class="btn" href="shop.html"><span>Continue shopping</span></a>';
       $("#co").hidden = true;
       $("#ey").hidden = true;
       $("#ok").hidden = false;
